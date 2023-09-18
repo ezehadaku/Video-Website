@@ -6,7 +6,15 @@
     <link rel="stylesheet" href="css/materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
     rel="stylesheet">
-    <title></title>
+    <title>Video website</title>
+    <style>
+        .flex-gap{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px ;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,10 +25,11 @@
                     <a href=""class="brand-logo">
                     <img src="img/logo 2.jpeg" alt="" width="6%">
                 </a>
-                <ul class="right">
-                    <li><i class="material-icons">home</i></li>
-                    <li><i class="material-icons">account_circle</i></li>
-                    <li><i class="material-icons">settings</i></li>
+                <ul class="right flex-gap">
+                    <li><a href="#"><i class="material-icons">home</i></a></li>
+                    <li><a href="#"><i class="material-icons">account_circle</i></a></li>
+                    <li><a href="#"><i class="material-icons">settings</i></a></li>
+                    <li><a href="#"><i class="material-icons">video_library</i></a></li>
                 </ul>
                 </div>
             </div>
@@ -55,11 +64,19 @@
         <input type="search" name="search" id="srch" placeholder="search...">
     </form>
     </div>
+    <div class="chips">
+        <i class="chip">BTS</i>
+        <i class="chip">Live</i>
+        <i class="chip">Html</i>
+        <i class="chip">News</i>
+        <i class="chip">Music</i>
+        <i class="chip">recently uploaded</i>
+    </div>    
 </div>
+
     <main>
     <div class="container">
         <h4 class="black-text">Recent Uploads</h4>
-        
         <div class="row" >
             <div class="col s12 m6 l4 hoverable">
                 <div class="card">
@@ -226,6 +243,7 @@
             $('.modal').modal();
             $('.materialboxed').materialbox();
             $('.parallax').parallax();
+            $('.chips').chips();
         });
     </script>
 </body>
