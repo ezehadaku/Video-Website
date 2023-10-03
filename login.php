@@ -1,3 +1,50 @@
+<?php
+include('connect.php');
+
+
+
+//declare empty variables
+$email = '';
+$repeat_password = '';
+//check if the submit button is clicked
+if(isset($_POST['login'])) {
+    
+    echo "Running registration";
+    
+    //record the inputs
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    //write the query
+    $save_query = "INSERT INTO `login_tb`(`email`, `password`) VALUES ('$email','$password')";
+
+
+    //send the query to server
+    $send_to_server = mysqli_query( $connect, $save_query);
+
+    if($send_to_server){
+        echo "Login successfully";
+    }else{
+        echo "Failed to login";
+    };
+
+    //check if the data is saved to the database
+    mysqli_close($connect);
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +62,7 @@
     </header>
     <div class="container">
         <div class="login-box center-align">
-            <form action="" class="col s12">
+            <form action="login.php" class="col s12" method="POST">
                 <h3 style="text-decoration: underline;">Login</h3>
                 <div class="row">
                     <div class="input-field col s12">
@@ -45,7 +92,7 @@
                         <p><a href="#" class="grey-text">forgot password</a></p>
                     </div>
                 </div>
-                <button type="button" class="btn-flat black white-text"><a href="index.html">LOGIN</a></button>
+                <input type="submit" value="login" id="login" name="login" class="btn-flat black white-text">
                 <p>Not registered?<a href="register.html">Sign Up</a></p>
             </form>
         </div>
