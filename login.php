@@ -67,7 +67,7 @@ if(isset($_POST['login'])) {
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail</i>
-                        <input id="icon_mail" type="email" class="validate">
+                        <input id="icon_mail" type="email" name="email" class="validate">
                         <label for="icon_mail">Email</label>
                         <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
                     </div>
@@ -75,7 +75,7 @@ if(isset($_POST['login'])) {
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock</i>
-                        <input id="icon_lock" type="password" class="validate">
+                        <input id="icon_lock" type="password" name="password" class="validate">
                         <label for="icon_lock">Password</label>
                     </div>
                 </div>

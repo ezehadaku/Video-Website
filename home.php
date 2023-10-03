@@ -31,9 +31,8 @@
                         <img src="img/logo 2.jpeg" alt="" width="6%" >
                     </a>
                     <ul class="right flex-gap">
-                        <li class="tooltipped up-99" data-position="bottom" data-tooltip="Homepage"><a href="home.php" ><i class="material-icons">home</i></a></li>
-                        <li class="tooltipped up-99" data-position="bottom" data-tooltip="Account"><a href="login.php" ><i class="material-icons">account_circle</i></a></li>
-                        <li class="tooltipped up-99" data-position="bottom" data-tooltip="Settings"><a href="" ><i class="material-icons">settings</i></a></li>
+                        <li><a href="logout.php" ><i class="material-icons">logout</i></a></li>
+                        <li><a href="upload.php" ><i class="material-icons">upload_file</i></a></li>
                         <li class="tooltipped up-99" data-position="bottom" data-tooltip="Playlist"><a href="" ><i class="material-icons">video_library</i></a></li>
                     </ul>
                 </div>
@@ -297,6 +296,7 @@
                     <br>
                     <h6 class="white-text"><a href="home.php" class="white-text">Home</a></h6>
                     <h6 class="white-text"><a href="login.php" class="white-text">Login</a></h6>
+                    <h6 class="white-text"><a href="#" class="white-text">About Us</a></h6>
                 </div>
             </div>
         </div>
