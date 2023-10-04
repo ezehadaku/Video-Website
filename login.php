@@ -92,7 +92,7 @@ if(isset($_POST['login'])) {
                     </div>
                 </div>
                 <input type="submit" value="login" id="login" name="login" class="btn-flat black white-text">
-                <p>Not registered?<a href="register.html">Sign Up</a></p>
+                <p>Not registered?<a href="register.php">Sign Up</a></p>
             </form>
         </div>
 
