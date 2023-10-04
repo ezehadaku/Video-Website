@@ -3,33 +3,7 @@ include('connect.php');
 
 
 
-//declare empty variables
-$email = '';
-$repeat_password = '';
-//check if the submit button is clicked
-if(isset($_POST['login'])) {
-    
-    
-    //record the inputs
-    $email = $_POST['email'];
-    $password = $_POST['password'];
 
-    //write the query
-    $save_query = "INSERT INTO `login_tb`(`email`, `password`) VALUES ('$email','$password')";
-
-
-    //send the query to server
-    $send_to_server = mysqli_query( $connect, $save_query);
-
-    if($send_to_server){
-        header("Location: home.php");
-    }else{
-        echo "Failed to login";
-    };
-
-    //check if the data is saved to the database
-    mysqli_close($connect);
-}
 ?>
 
 
@@ -60,8 +34,8 @@ if(isset($_POST['login'])) {
         <h1 class=" black blue-text center-align">Vid.com</h1>
     </header>
     <div class="container">
-        <div class="login-box center-align">
-            <form action="login.php" class="col s12" method="POST">
+        <div class="login-box  container center-align">
+            <form action="login.php" class="col s12 container" method="POST">
                 <h3 style="text-decoration: underline;">Login</h3>
                 <div class="row">
                     <div class="input-field col s12">
@@ -76,19 +50,6 @@ if(isset($_POST['login'])) {
                         <i class="material-icons prefix">lock</i>
                         <input id="icon_lock" type="password" name="password" class="validate">
                         <label for="icon_lock">Password</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <p>
-                            <label class="left-align">
-                                <input type="checkbox" class="filled-in" checked="checked" />
-                                <span class="bl">Remember me</span>
-                            </label>
-                        </p>
-                    </div>
-                    <div class="col s6">
-                        <p><a href="#" class="grey-text">forgot password</a></p>
                     </div>
                 </div>
                 <input type="submit" value="login" id="login" name="login" class="btn-flat black white-text">

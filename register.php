@@ -53,16 +53,16 @@ if(isset($_POST['register'])) {
         <h1 class=" black blue-text center-align">Vid.com</h1>
     </header>
     <div class="container">
-        <div class="login-box center-align">
-            <form action="register.php" class="col s12" method="POST">
+        <div class="login-box center-align container">
+            <form action="register.php" class="col s12 container" method="POST">
                 <h3 style="text-decoration: underline;">Register</h3>
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12 l6">
                         <i class="material-icons prefix">person</i>
                         <input id="first_name" type="text" name="first_name" class="validate">
                         <label for="first_name">First Name</label>
                     </div>
-                    <div class="input-field col s6">
+                    <div class="input-field col s12 l6">
                         <i class="material-icons prefix">person</i>
                         <input id="last_name" type="text" name="last_name" class="validate">
                         <label for="last_name">Last Name</label>
@@ -90,7 +90,7 @@ if(isset($_POST['register'])) {
                     </div>
                 </div>
                 <input type="submit" value="register" id="register" name="register" class="btn-flat black white-text">
-                <p>Already have an account?<a href="login.html">Sign in</a></p>
+                <p>Already have an account?<a href="login.php"> Sign in</a></p>
             </form>
         </div>
     </div>
