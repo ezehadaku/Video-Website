@@ -1,20 +1,39 @@
 <?php
 include('connect.php');
 
+$email = $password = '';
 
+//if the login button is clicked
+if(isset($_POST['login'])) {
 
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+// query to recieve login details
+    $s_query = "SELECT * FROM  register_tb WHERE email = '$email'";
+
+    //check if the values are the sae with the db
+    if (mysqli_num_rows(mysqli_query($connect,$s_query))>0) {
+
+        //if true run the query below
+        $r = mysqli_query($connect,$s_query);
+
+        //store result in an associative array
+        $recieve_result = mysqli_fetch_assoc($r);
+
+        //extract password from receive result
+        $password = $recieve_result['password'];
+
+        //do an if check to check if password is the same as the password in the database
+        if($password === $_POST['password']) {
+            header('location: welcome.php');
+        }else{
+            echo 'incorrect password and username';
+        }
+    }
+}
 
 ?>
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -40,15 +59,15 @@ include('connect.php');
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">mail</i>
-                        <input id="icon_mail" type="email" name="email" class="validate">
+                        <input id="icon_mail" type="email" name="email" class="validate" required>
                         <label for="icon_mail">Email</label>
-                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                        
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">lock</i>
-                        <input id="icon_lock" type="password" name="password" class="validate">
+                        <input id="icon_lock" type="password" name="password" class="validate" required>
                         <label for="icon_lock">Password</label>
                     </div>
                 </div>
