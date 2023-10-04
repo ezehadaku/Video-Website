@@ -12,8 +12,6 @@ $repeat_password = '';
 //check if the submit button is clicked
 if(isset($_POST['register'])) {
     
-    echo "Running registration";
-    
     //record the inputs
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
@@ -29,7 +27,7 @@ if(isset($_POST['register'])) {
     $send_to_server = mysqli_query( $connect, $save_query);
 
     if($send_to_server){
-        echo "Registered successfully";
+        header("Location: login.php"); 
     }else{
         echo "Failed to register";
     };

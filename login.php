@@ -9,7 +9,6 @@ $repeat_password = '';
 //check if the submit button is clicked
 if(isset($_POST['login'])) {
     
-    echo "Running registration";
     
     //record the inputs
     $email = $_POST['email'];
@@ -23,7 +22,7 @@ if(isset($_POST['login'])) {
     $send_to_server = mysqli_query( $connect, $save_query);
 
     if($send_to_server){
-        echo "Login successfully";
+        header("Location: home.php");
     }else{
         echo "Failed to login";
     };
