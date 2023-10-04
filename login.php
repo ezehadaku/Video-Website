@@ -20,13 +20,21 @@ if(isset($_POST['login'])) {
 
         //store result in an associative array
         $recieve_result = mysqli_fetch_assoc($r);
+        print_r($recieve_result);
+        //Start a session
+        session_start();
+
+        $_SESSION['first_name'] = $recieve_result['first_name'];
+        $_SESSION['last_name'] = $recieve_result['last_name'];
+        $_SESSION['email'] = $recieve_result['email'];
+
 
         //extract password from receive result
         $password = $recieve_result['password'];
 
         //do an if check to check if password is the same as the password in the database
         if($password === $_POST['password']) {
-            header('location: welcome.php');
+            header('location: home.php');
         }else{
             echo 'incorrect password and username';
         }

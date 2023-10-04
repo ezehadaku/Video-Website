@@ -1,3 +1,26 @@
+<?php
+include('connect.php');
+session_start();
+
+$s_query = "SELECT * FROM  upload_tb"; 
+
+//if true run the query below
+$r = mysqli_query($connect,$s_query);
+
+//store result in an associative array
+$videos = mysqli_fetch_all($r,MYSQLI_ASSOC);
+
+
+//Redirect users to login page if they try to access landing page
+if(!$_SESSION['email']){
+    header('Location: login.php');
+  }
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,13 +46,11 @@
 </head>
 <body>
     <header>
+        
     <div class="navbar-fixed">
         <nav class="black lighten-5">
             <div class="nav-wrapper">
                 <div class="container">
-                    <a href=""class="brand-logo">
-                        <img src="img/logo 2.jpeg" alt="" width="6%" >
-                    </a>
                     <ul class="right flex-gap">
                         <li><a href="logout.php" ><i class="material-icons">logout</i></a></li>
                         <li><a href="upload.php" ><i class="material-icons">upload_file</i></a></li>
@@ -60,6 +81,7 @@
     </div>
     </header>
 <div class="container">
+    <h3>Welcome <?php echo $_SESSION['first_name'];?></h3>
     <div class="container">
     <form style="padding: 15px; margin: 20px;">
         <input type="search" name="search" id="srch" placeholder="search...">
@@ -79,205 +101,23 @@
     <div class="container">
         <h4 class="black-text">Recent Uploads</h4>
         <div class="row" >
+            <?php foreach ($videos as $video){?>
             <div class="col s12 m6 l4">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img src="img/recent 1.jpg" class="responsive-img materialboxed"
+                        <img src="<?php echo $video['image_link']?>" class="responsive-img materialboxed"
                         data-caption="">
                     </div>
                     <div class="card-content">
-                        <span class="card-title black-text">V 'Slow Dancing' Official MV</span>
-                        <i class="chip">Music</i>
+                        <span class="card-title black-text"><?php echo $video['vid_title']?></span>
+                        <i class="chip"><?php echo $video['tags']?></i>
                     </div>
                     <div class="card-action">
-                        <a href="https://youtu.be/eI0iTRS0Ha8?si=xF386SgP1ojFUJ88" class="blue-text">PLAY NOW</a>
+                        <a href="<?php echo $video['video_link']?>" class="blue-text">PLAY NOW</a>
                     </div>
                 </div>
             </div>
-
-            <div class="col s12 m6 l4 ">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/recent 2.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Tegwolo's version of RUSH</span>
-                            <i class="chip">Comedy</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/qc-2N6g5m1c?si=CSnjmjfI5qWScqTA" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/recent 3.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">THE BOSS - Brainjotter</span>
-                        <i class="chip">Comedy</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/znnwzqVqcT8?si=7mvQKmtymXMehw_s" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/recent 4.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Pitch Perfect - All The Best Songs</span>
-                        <i class="chip">Music</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/c6eEAAkTR14?si=ZBZIXmswkKcM4uW0" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/recent 5.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">BTS (방탄소년단) 'Take Two' MV</span>
-                        <i class="chip">Music</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/YUHKJEgW6hs?si=sWpRlgQhopMcUj06" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/recent 6.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Full Version | [My Lady General</span>
-                        <i class="chip">Movie</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/_HhB4ADvzMM?si=BOPan-FUN6SClXbE" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <h4 class="black-text">News</h4>
-        
-        <div class="row" >
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 1.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">News At 10 | 12/09/2023</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://www.youtube.com/live/Bb0I-G6PZWU?si=J2z4nCbx_mGoDMOr" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 2.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Russia G20 'milestone'</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/TMTaymQ7dyw?si=vp5z1ITjY2ZDAstJ" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 3.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Will Kim Jong Un Sell Weapons to Russia?</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/TC5i-c7PqAE?si=oGBxKEoJiTe_SqLT" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 4.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Group Provides Food Items Medical Services To Women</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/SfD7R2I_tZs?si=crcpP1OfXBDWatiB" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 5.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">Morocco earthquake: What we know so far</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/R2eXRTTY7cs?si=M02Lpla-9teUMpYx" class="blue-text">PLAY NOW</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col s12 m6 l4">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img src="img/news 6.jpg" class="responsive-img materialboxed"
-                        data-caption="">
-                    </div>
-                    <div class="card-content">
-                        <span class="card-title black-text">26 Persons Dead, 30 Rescued In Mokwa Local Government</span>
-                        <i class="chip">News</i>
-                    </div>
-                    <div class="card-action">
-                        <a href="https://youtu.be/2bO9MwlIHHQ?si=0-S8nCtLvMHUQzuL" class="blue-text">PLAY NOW</a>
-                    </div>
-                    </div>
-                </div>
-            </div>
+            <?php }?>
         </div>
     </div>
     </main>
