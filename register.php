@@ -11,6 +11,11 @@ $password = '';
 $repeat_password = '';
 //check if the submit button is clicked
 if(isset($_POST['register'])) {
+
+    if($_POST['password'] !=$_POST['repeat_password']) {
+        echo 'password does not match';
+    }else {
+
     
     //record the inputs
     $first_name = $_POST['first_name'];
@@ -34,14 +39,10 @@ if(isset($_POST['register'])) {
     }else{
         echo "Failed to register";
     };
-    if($password === $repeat_password) {
-        echo "Password correct";
-    }else{
-        echo 'incorrect password';
-    }
 
     //check if the data is saved to the database
     mysqli_close($connect);
+}
 }
 ?>
 
