@@ -19,12 +19,17 @@ if(!$_SESSION['email']){
 </head>
 <body>
   <div class="container">
-    <h1>Welcome <?php echo $_SESSION['first_name'];?> !!</h1>
+    <h1>Welcome <?php echo $_SESSION['first_name'];?>.</h1>
     <h6>You have successfully registered on vid.com,below are your details:</h6>
     <p>First Name: <?php echo $_SESSION['first_name'];?></p>
     <p> Your email <?php echo $_SESSION['email'];?></p>
     <p>Click the login button below to login.</p>
   <a href="login.php" class="btn"> Login</a>
   </div>
+  <footer>
+    <div class="footer-copyright">
+      <h6 class="black-text center-align">2023 vid.com|CORE-TECH </h6>
+    </div>
+  </footer>
 </body>
 </html>
