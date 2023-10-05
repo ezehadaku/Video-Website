@@ -15,6 +15,39 @@ $videos = mysqli_fetch_all($r,MYSQLI_ASSOC);
 if(!$_SESSION['email']){
     header('Location: login.php');
 }
+
+//declare empty variable
+$vid_id ='';
+//check if variable is set
+if(isset($_GET['vid_id'])) {
+    $vid_id = $_GET['vid_id'];
+    
+     //write the query
+     $select_single_data = "SELECT * FROM `upload_tb` WHERE vid_id = '$vid_id'";
+    
+     //send query to db
+    $send_query = mysqli_query($connect, $select_single_data);
+    
+     //store result as associative array
+    $video = mysqli_fetch_assoc($send_query);
+
+
+};
+
+if(isset($_POST['delete'])) {
+    $delete_id = $_POST['delete_id'];
+    
+    
+     //write the query
+    $delete_data = "DELETE FROM `upload_tb` WHERE vid_id = '$delete_id'";
+    
+     //send query to db
+    $send_query = mysqli_query($connect, $delete_data);
+
+    if($delete_data){
+        header('location: home.php');
+    }
+}
 ?>
 
 
@@ -114,6 +147,10 @@ if(!$_SESSION['email']){
                     </div>
                     <div class="card-action">
                         <a href="<?php echo $video['video_link']?>" class="blue-text">PLAY NOW</a>
+                        <form action="home.php" method="POST" style="display: inline">
+                            <input type="text" name="delete_id" id="delete_id"  hidden value="<?php echo $video['vid_id'];?>">
+                            <input type="submit" value="delete" name="delete" class="red white-text btn-small">
+                        </form>
                     </div>
                 </div>
             </div>
