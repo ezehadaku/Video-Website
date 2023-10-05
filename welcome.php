@@ -1,3 +1,13 @@
+<?php
+include('connect.php');
+session_start();
+
+//Redirect users to login page if they try to access welcome page
+if(!$_SESSION['email']){
+  header('Location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +18,13 @@
     <title>welcome</title>
 </head>
 <body>
-        <li><div cl
-          <div class="background">
-            <img src="images/office.jpg">
-          </div>
-          <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
+  <div class="container">
+    <h1>Welcome <?php echo $_SESSION['first_name'];?> !!</h1>
+    <h6>You have successfully registered on vid.com,below are your details:</h6>
+    <p>First Name: <?php echo $_SESSION['first_name'];?></p>
+    <p> Your email <?php echo $_SESSION['email'];?></p>
+    <p>Click the login button below to login.</p>
+  <a href="login.php" class="btn"> Login</a>
+  </div>
 </body>
 </html>

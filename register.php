@@ -27,10 +27,18 @@ if(isset($_POST['register'])) {
     $send_to_server = mysqli_query( $connect, $save_query);
 
     if($send_to_server){
-        header("Location: login.php"); 
+        session_start();
+        $_SESSION['first_name']=$first_name;
+        $_SESSION['email']=$email;
+        header("Location: welcome.php"); 
     }else{
         echo "Failed to register";
     };
+    if($password === $repeat_password) {
+        echo "Password correct";
+    }else{
+        echo 'incorrect password';
+    }
 
     //check if the data is saved to the database
     mysqli_close($connect);
@@ -94,7 +102,7 @@ if(isset($_POST['register'])) {
             </form>
         </div>
     </div>
-    <footer class="black page-footer">
+    <footer class="blue page-footer">
         <div class="footer-copyright blue">
             <div class="container center-align center">
                 <h6 class="white-text">2023 vid.com|CORE-TECH </h6>

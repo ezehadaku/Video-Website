@@ -85,7 +85,7 @@ if(isset($_POST['login'])) {
         </div>
 
     </div>
-    <footer class="black page-footer">
+    <footer class="blue page-footer">
         <div class="footer-copyright blue">
             <div class="container center-align center">
                 <h6 class="white-text">2023 vid.com|CORE-TECH </h6>

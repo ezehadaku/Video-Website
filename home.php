@@ -14,7 +14,7 @@ $videos = mysqli_fetch_all($r,MYSQLI_ASSOC);
 //Redirect users to login page if they try to access landing page
 if(!$_SESSION['email']){
     header('Location: login.php');
-  }
+}
 ?>
 
 
