@@ -5,5 +5,5 @@ session_start();
 unset($_SESSION['email']);
 unset($_SESSION['first_name']);
 
-header('Location: login.php');
+header('Location: index.html');
 ?>
