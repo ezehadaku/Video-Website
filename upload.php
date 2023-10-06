@@ -5,11 +5,6 @@ session_start();
 
 //Redirect users to login page if they try to access landing page
 if(!$_SESSION['email']){
-    header('Location: index.php');
-}
-
-//Redirect users to login page if they try to access landing page
-if(!$_SESSION['email']){
     header('Location: login.php');
 }
 
@@ -29,7 +24,7 @@ if(isset($_POST['submit'])) {
     //write the query
     $save_query = "INSERT INTO `upload_tb`(`vid_title`, `image_link`, `video_link`, `tags`) VALUES ('$vid_title', '$image_link','$video_link', '$tags')";
     //send the query to server
-    $send_to_server = mysqli_query( $connect,$save_query);
+    $send_to_server = mysqli_query( $connect, $save_query);
     //check if the data is saved to the database
     if ($send_to_server){
         header('Location: home.php');

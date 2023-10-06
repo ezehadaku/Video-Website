@@ -21,6 +21,7 @@ $vid_id ='';
 //check if variable is set
 if(isset($_GET['vid_id'])) {
     $vid_id = $_GET['vid_id'];
+    $_SESSION['vid_id'] = $vid_id;
     
      //write the query
      $select_single_data = "SELECT * FROM `upload_tb` WHERE vid_id = '$vid_id'";
@@ -85,33 +86,15 @@ if(isset($_POST['delete'])) {
             <div class="nav-wrapper">
                 <div class="container">
                     <ul class="right flex-gap">
-                        <li><a href="logout.php" ><i class="material-icons">logout</i></a></li>
-                        <li><a href="upload.php" ><i class="material-icons">upload_file</i></a></li>
+                        <li class="tooltipped up-99" data-position="bottom" data-tooltip="Logout"><a href="logout.php" ><i class="material-icons">logout</i></a></li>
+                        <li class="tooltipped up-99" data-position="bottom" data-tooltip="Upload New Video"><a href="upload.php" ><i class="material-icons">upload_file</i></a></li>
                         <li class="tooltipped up-99" data-position="bottom" data-tooltip="Playlist"><a href="" ><i class="material-icons">video_library</i></a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
-    <div class="slider" style="margin-top: 0px;padding-top: 0px;">
-        <ul class="slides">
-            <li>
-                <img src="img/spiderman 2.jpg" alt="">
-            </li>
-            <li>
-                <img src="img/groot.jpg" alt="">
-            </li>
-            <li>
-                <img src="img/end game.jpg" alt="">
-            </li>
-            <li>
-                <img src="img/warlord.jpg" alt="">
-            </li>
-            <li>
-                <img src="img/anime.jpg" alt="">
-            </li>
-        </ul>
-    </div>
+    
     </header>
 <div class="container">
     <h3>Welcome <?php echo $_SESSION['first_name'];?></h3>
@@ -140,13 +123,19 @@ if(isset($_POST['delete'])) {
                     <div class="card-image">
                         <img src="<?php echo $video['image_link']?>" class="responsive-img materialboxed"
                         data-caption="">
+                        <a href="<?php echo $video['video_link']?>" class="btn btn-floating btn-large halfway-fab blue darken-4">
+                            <i class="material-icons">play_circle</i>
+                        </a>
                     </div>
                     <div class="card-content">
-                        <span class="card-title black-text"><?php echo $video['vid_title']?></span>
+                        <span class="card-title black-text"><?php echo $video['vid_title']?>
+                        <a href="update.php?vid_id=<?php echo $video['vid_id'];?>"><i class="material-icons yellow-text text-darken-4">mode_edit</i></a>
+                        
+                        </span>
                         <i class="chip"><?php echo $video['tags']?></i>
                     </div>
                     <div class="card-action">
-                        <a href="<?php echo $video['video_link']?>" class="blue-text">PLAY NOW</a>
+                        <a href="update.php?vid_id=<?php echo $video['vid_id']?>" class="blue-text">UPDATE NOW</a>
                         <form action="home.php" method="POST" style="display: inline">
                             <input type="text" name="delete_id" id="delete_id"  hidden value="<?php echo $video['vid_id'];?>">
                             <input type="submit" value="delete" name="delete" class="red white-text btn-small">
