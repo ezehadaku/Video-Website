@@ -4,6 +4,11 @@ include('connect.php');
 
 session_start();
 
+//Redirect users to login page if they try to access update page without login
+if(!$_SESSION['email']){
+    header('Location: login.php');
+}
+
 //declare empty variable
 $vid_id ='';
 //check if variable is set
@@ -23,19 +28,32 @@ if(isset($_GET['vid_id'])) {
     //close the connection 
 }
 
+//declare empty variable for new vid title
 $update_vid_name = '';
+
+//check if the update button is clicked
     if(isset($_POST['update'])){
+
+        //store input in declared varable
         $update_vid_name = $_POST['update_vid_name'];
 
-        $sql = "UPDATE `upload_tb SET `vid_title`='$update_vid_name'";
+        //Write Uodate query
+        $sql = "UPDATE `upload_tb` SET `vid_title` = '$update_vid_name'";
 
-        if(sqli_query($sql)){
+        //Check if the query is true, then redirect to homepage
+        if(mysqli_query($connect, $sql)){
             header('location: home.php');
+        } else {
+            echo 'error'  . mysqli_connect_error($connect);
         }
     }
-
+    //close connection
     mysqli_close($connect);
+
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
