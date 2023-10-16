@@ -14,6 +14,7 @@ $vid_id ='';
 //check if variable is set
 if(isset($_GET['vid_id'])) {
     $vid_id = $_GET['vid_id'];
+    $_SESSION['vid_id'] = $vid_id;
     // echo $vid_id;
 
     //write the query
@@ -35,14 +36,17 @@ $update_vid_name = '';
     if(isset($_POST['update'])){
 
         //store input in declared varable
+        $vid_id = $_SESSION['vid_id'];
         $update_vid_name = $_POST['update_vid_name'];
 
         //Write Uodate query
-        $sql = "UPDATE `upload_tb` SET `vid_title` = '$update_vid_name'";
+        $sql = "UPDATE `upload_tb` SET vid_title = '$update_vid_name' WHERE vid_id = '$vid_id'";
 
+        $send_update_query = mysqli_query($connect, $sql);
         //Check if the query is true, then redirect to homepage
-        if(mysqli_query($connect, $sql)){
+        if($send_update_query){
             header('location: home.php');
+            unset($_SESSION['vid_id']);
         } else {
             echo 'error'  . mysqli_connect_error($connect);
         }
@@ -66,7 +70,7 @@ $update_vid_name = '';
 <body>
 <h1>Update</h1>
 <div class="container">
-<form action="update.php" method="GET" class="container center-align">
+<form action="update.php" method="POST" class="container center-align">
     <label>Video title</label>
     <input type="text" name="update_vid_name" placeholder="<?php echo $video['vid_title']?>">
     <input type="submit" value="update" name="update" class="btn">
